@@ -1,0 +1,12 @@
+flask
+gunicorn
+sqlalchemy
+marshmallow
+redis
+ujson
+pyjwt
+python-dateutil
+pymysql
+pike
+click
+cryptography

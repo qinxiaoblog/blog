@@ -1,0 +1,6 @@
+honcho
+ipython
+flake8
+flake8-colors
+pytest
+coverage
