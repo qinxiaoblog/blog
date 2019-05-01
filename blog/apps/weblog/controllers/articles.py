@@ -22,10 +22,12 @@ class ArticlesController:
                 create_at = article.create_at
 
                 category_id = article.category_id
-                category = session.query(Category).filter_by(id=category_id,is_drop=0).first()
+                category = session.query(Category).filter_by(
+                    id=category_id, is_drop=0).first()
 
                 article_id = article.id
-                article_tag_list = session.query(ArticleTag).filter_by(article_id=article_id,is_drop=0).all()
+                article_tag_list = session.query(ArticleTag).filter_by(
+                    article_id=article_id, is_drop=0).all()
                 tags = []
                 for article_tag in article_tag_list:
 
