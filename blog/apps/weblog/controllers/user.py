@@ -29,6 +29,9 @@ class UserController:
             auth = LocalAuth(user_id=new_user.id, password=db_password)
             session.add(auth)
 
+            blog = Blog(user_id=new_user.id,name=nickname)
+            session.add(blog)
+
         ret = {'id': new_user.id, 'nickname': new_user.nickname,
                'default_password': default_password, 'token': token}
         return ret

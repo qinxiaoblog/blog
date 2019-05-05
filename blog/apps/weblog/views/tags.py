@@ -10,5 +10,5 @@ class TagsGetList(BaseView):
     @schema(reply=res_tags_list)
     def get(self, **kwargs):
 
-        data = TagController.detail(kwargs['nickname'])
+        data = TagController.get_tag_list(kwargs['nickname'])
         return dict(data=data)
