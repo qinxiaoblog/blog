@@ -5,16 +5,17 @@ from blog.models.article_tags import ArticleTag
 from blog.models.blogs import Blog
 from blog.common.db import use_orm
 from blog.models.tags import Tag
+from blog.models.users import User
 
 
 class TagController:
 
     @classmethod
     @use_orm
-    def detail(cls, nickname, *, session):
+    def get_tag_list(cls, nickname, *, session):
         with session.begin():
-            blog = session.query(Blog).filter_by(name=nickname).first()
-            user_id = blog.user_id
+            user = session.query(User).filter_by(nickname=nickname).first()
+            user_id = user.id
 
             tags = session.query(Tag).filter_by(user_id=user_id).all()
             tag_list = []

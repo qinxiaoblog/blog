@@ -56,8 +56,8 @@ class ArticlesController:
 
                     tag_id = article_tag.tag_id
                     tag = session.query(Tag).filter_by(id=tag_id,is_drop=0).first()
-                    tags.append(tag.name)
-
+                    if tag:
+                        tags.append(tag.name)
                 article = {'id':article.id, 'tags': tags, 'category': category.name,
                           'title': title, 'description': description,
                           'content': content, 'scan_num': scan_num,
