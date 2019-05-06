@@ -1,5 +1,5 @@
 # Introduction
-just a blog. but beautiful.
+Just a API of Blog-Admin and Blog-Web
 
 
 # Installation
@@ -41,19 +41,23 @@ and you can overwrite default settings.
 `make dist` to make a package,
 `honcho start` to start server locally.
 `make compile-deps` to generate requirements.txt use requirements.in
-more details please read the Makefile.
 
 
 
-# 后台管理
-## 注册
+# Blog Admin
+## register
+Endpoint:
 ```
 POST:/api/v1/user/register
+```
+Example Request Body:
+```
 {
 	"nickname":"qinxiao",
 	"email":"qinxiao@qq.com"
 }
 ```
+Example Response:
 ```
 {
     "data": {
@@ -66,15 +70,19 @@ POST:/api/v1/user/register
     "msg": ""
 }
 ```
-##  登陆
+##  login
+Endpoint:
 ```
 POST:/api/v1/user/login
-
+```
+Example Request Body:
+```
 {
 	"account":"qinxiao@qq.com",
 	"password":"0123456789"
 }
 ```
+Example Response:
 ```
 {
     "data": {
@@ -86,10 +94,14 @@ POST:/api/v1/user/login
     "msg": ""
 }
 ```
-## 博客文章
-### 获取博客文章列表
+## Article of Blog
+### Get Articles List
+Endpoint:
 ```
 GET:/api/v1/admin/articles
+```
+Example Response:
+```
 {
     "data": {
         "articleList": [
@@ -161,9 +173,13 @@ GET:/api/v1/admin/articles
     "msg": ""
 }
 ```
-### 写博客文章
+### Write Article
+Endpoint:
 ```
 POST:/api/v1/admin/articles
+```
+Example Request Body:
+```
 {
 	"title":"supervisor",
 	"summary":"后台进程管理工具 supervisor 使用总结",
@@ -172,18 +188,26 @@ POST:/api/v1/admin/articles
 	"category":"操作系统"
 }
 ```
-### 删除博客文章
+###  Delete Article
+Endpoint:
 ```
-DELETE:10.100.0.6:8000/api/v1/admin/articles
+DELETE:/api/v1/admin/articles
+```
+Example Request Body:
+```
 {
 	"id":32
 }
 ```
 
-## 分类
-### 获取分类
+## category
+### Get Categories
+Endpoint:
 ```
 GET:/api/v1/admin/categories
+```
+Example Response:
+```
 {
     "data": {
         "categories": [
@@ -199,31 +223,38 @@ GET:/api/v1/admin/categories
     "msg": ""
 }
 ```
-### 添加分类
+### Add Category
+Endpoint:
 ```
-POST：10.100.0.6:8000/api/v1/admin/categories
+POST：/api/v1/admin/categories
+```
+Example Request Body:
+```
 {
 	"name":"计算机组成原理"
 }
-
-{
-    "data": null,
-    "err": "SUCCESS",
-    "msg": ""
-}
 ```
-### 删除分类
+
+### Delete Category
+Endpoint:
 ```
 DELETE:/api/v1/admin/categories
+```
+Example Request Body:
+```
 {
 	"name":"计算机网络"
 }
 ```
 
-## 标签
-### 获取标签
+## Tag
+### Get Tags
+Endpoint:
 ```
 GET:/api/v1/admin/tags
+```
+Example Response:
+```
 
 {
     "data": {
@@ -238,32 +269,38 @@ GET:/api/v1/admin/tags
     "msg": ""
 }
 ```
-### 添加标签
+### Add Tag
+Endpoint:
 ```
 POST:/api/v1/admin/tags
+```
+Example Request Body:
+```
 {
 	"name":"C++"
 }
-
-{
-    "data": null,
-    "err": "SUCCESS",
-    "msg": ""
-}
 ```
-### 删除标签
+### Delete Tag
+Endpoint:
 ```
 DELETE:/api/v1/admin/tags
+```
+Example Request Body:
+```
 {
 	"name":"C++"
 }
 ```
 
 
-# 前台
-## 获取博客文章列表
+# Blog Web
+## Get Articles List
+Endpoint:
 ```
 GET:/api/v1/articles/<string:nickname>
+```
+Example Response:
+```
 {
     "data": {
         "articleList": [
@@ -336,9 +373,14 @@ GET:/api/v1/articles/<string:nickname>
     "msg": ""
 }
 ```
-### 获取标签
+### Get Tag
+Endpoint:
 ```
 GET:/api/v1/tags/getList/<string:nickname>
+
+```
+Example Response:
+```
 {
     "data": {
         "tagList": [
@@ -376,9 +418,12 @@ GET:/api/v1/tags/getList/<string:nickname>
     "msg": ""
 }
 ```
-### 获取分类
+### Get Categories
 ```
 GET:/api/v1/categories/getList/<string:nickname>
+```
+Example Response:
+```
 {
     "data": {
         "categoryList": [
@@ -413,12 +458,12 @@ GET:/api/v1/categories/getList/<string:nickname>
 }
 
 ```
-### 获取特定标签下文章列表
+### Get Articles of category
 ```
 GET:/api/v1/articles/category/<string:nickname>
-{
-	"category":"数据库"
-}
+```
+Example Response:
+```
 {
     "data": {
         "articleList": [
@@ -452,12 +497,13 @@ GET:/api/v1/articles/category/<string:nickname>
     "msg": ""
 }
 ```
-### 获取特定分类下文章列表
+### Get Articles of Tag
+Endpoint:
 ```
-GET:/api/v1/articles/tag/xiaoxiao
-{
-	"tag":"mysql"
-}
+GET:/api/v1/articles/tag/<string:nickname>/<string:tag>
+```
+Example Response:
+```
 {
     "data": {
         "articleList": [
@@ -492,12 +538,77 @@ GET:/api/v1/articles/tag/xiaoxiao
     "msg": ""
 }
 ```
-### 获取文章详情
+### Get Detail of Article
+Endpoint:
+```
+GET:/api/v1/article/<int:id>
+```
+Example Response:
+```
+{
+    "data": {
+        "_id": 31,
+        "category": "<blog.models.categories.Category object at 0x7fa4aa740208>",
+        "createTime": "2019-05-03T16:28:22",
+        "markdownContent": "## 一、普通 MySQL 连接方法\n使用模块 MySQLdb 普通方式连接。\n```\n#!/usr/bin/env python\n# _*_ coding:utf-8 _*_\nimport MySQLdb\nconn = MySQLdb.connect(host='127.0.0.1', port=3306, user='root', passwd='123', db='test')\ncursor = conn.cursor()\nsql_1 = \"select * from user where id = %s;\" % (5,)\nsql_2 = \"select * from user \\\n         where id = %s;\" % (5,)\nsql_3 = \"\"\"\n           insert into user(username, password)\n           values(\"yuchaoshui\", \"123\");\n        \"\"\"\ntry:\n    print cursor.execute(sql_1)\n    print cursor.fetchall()\n    print cursor.execute(sql_2)\n    print cursor.fetchall()\n    print cursor.execute(sql_3)\n    conn.commit()\nexcept Exception as e:\n    print(e)\n    conn.rollback()\ncursor.close()\nconn.close()\n```\n execute() 返回结果表示影响的行数。cursor.fetchone() 取回一条结果。sql_1 直接一行写完，sql_2 换行写完， sql_3 多行写。 查询时不需要 commit() 操作，插入、更新、删除时需要 commit() 提交。 \n\n\n## 二、使用连接池连接MySQL\n```\n#!/usr/bin/env python\n# _*_ coding:utf-8 _*_\nimport MySQLdb\nfrom DBUtils.PooledDB import PooledDB\npool = PooledDB(MySQLdb, 5, host='127.0.0.1', port=3306, user='root', passwd='123', db='test')\nconn = pool.connection()\ncursor = conn.cursor()\nsql_1 = \"select * from user where id = %s;\" % (5,)\nsql_2 = \"select * from user \\\n         where id = %s;\" % (5,)\nsql_3 = \"\"\"\n           insert into user(username, password)\n           values(\"yuchaoshui\", \"123\");\n        \"\"\"\ntry:\n    print cursor.execute(sql_1)\n    print cursor.fetchall()\n    print cursor.execute(sql_2)\n    print cursor.fetchall()\n    print cursor.execute(sql_3)\n    conn.commit()\nexcept Exception as e:\n    print(e)\n    conn.rollback()\ncursor.close()\nconn.close()\n```\n5 为连接池里的最少连接数， 以后每次需要数据库连接就是用connection()函数获取连接就好了 \n\n\nPooledDB 的默认值\n```\nPooledDB(self, creator, mincached=0, maxcached=0, maxshared=0, maxconnections=0, blocking=False, maxusage=None, setsession=None, reset=True, failures=None, ping=1, *args, **kwargs)\n```\nPooledDB的参数： \nmincached，最少的空闲连接数，如果空闲连接数小于这个数，pool会创建一个新的连接\nmaxcached，最大的空闲连接数，如果空闲连接数大于这个数，pool会关闭空闲连接\nmaxconnections，最大的连接数，\nblocking，当连接数达到最大的连接数时，在请求连接的时候，如果这个值是True，请求连接的程序会一直等待，直到当前连接数小于最大连接数，如果这个值是False，会报错，\nmaxshared , 当连接数达到这个数，新请求的连接会分享已经分配出去的连接 \n\n## 三、模块导入连接 MySQL\n  以连接池的方式，编写模块 mysqlhelper.py，可以在项目的其他地方导入MySQL连接实例即可使用。 模块点此下载\n```\n#!/usr/bin/env python\n# _*_ coding:utf-8 _*_\nfrom __future__ import print_function\nfrom DBUtils.PooledDB import PooledDB\nimport MySQLdb\nimport sys\n__all__ = ['m'] + [\"m\"+str(i) for i in range(2, 11)]\nclass MH(object):\n    def __init__(self):\n        try:\n            print(\"Connecting MySQL Server {0}@{1}:{2} ..\".format(\n                self.__class__.db, self.__class__.host, self.__class__.port), end='.')\n            self.conn = self.__class__.pool.connection()\n            self.cursor = self.conn.cursor()\n            print(' ok!')\n        except Exception, e:\n            print(\"pool.connection error: {0}\".format(e))\n    def select(self, query=''):\n        try:\n            self.effect = self.cursor.execute(query)\n            return self.cursor\n        except Exception as e:\n            print(\"select error: {0}\".format(e))\n    def update(self, query=''):\n        try:\n            self.effect = self.cursor.execute(query)\n            self.conn.commit()\n        except Exception as e:\n            print(\"update error: {0}\".format(e))\n            self.conn.rollback()\n            self.effect = 0\n# M2 类继承自 M1，表示一个新的 MySQL 连接池。\n# 如果需要新的连接池 ，按照如下格式新增即可。\nclass MH2(MH):\n    pass\ndef init_pool(M,\n            host='127.0.0.1', \n            port=3306, \n            user='root', \n            password='', \n            database='test',\n            pool_size=5): \n    M.host = host\n    M.port = int(port)\n    M.user = user\n    M.password = password\n    M.db = database\n    M.pool_size = pool_size\n    try:\n        M.pool = PooledDB(MySQLdb, \n            M.pool_size,\n            host=M.host,\n            port=M.port,\n            user=M.user,\n            passwd=M.password,\n            db=M.db)\n    except Exception, e:\n        print(\"PooledDB init error: {0}\".format(e))\n        exit(1)\n# 初始化连接池，可以有多个。第一个参数是前面手动定义的连接池类。\ninit_pool(MH, '127.0.0.1', 3306, 'root', '123', 'test')\ninit_pool(MH2, '12.55.5.61', 3306, 'root', '123', 'test')\n# 定义将要被导出的MySQL实例。 一个连接池可同时提供多个实例对象。\nm = MH()\nm2 = MH2()\nif __name__ == \"__main__\":\n    pass\n    #print \"\\nm info:\"\n    #print m.select(\"select * from user;\").fetchone()\n    #print m.effect\n    #print m.select(\"select * from user;\").fetchall()\n    #print m.effect\n    #m.update(\"insert into user(username,password) values('haha', 'heihei');\")\n    #print m.effect\n    ##################################################\n    #print \"\\nm2 info:\"\n    #print m2.select(\"select * from user;\").fetchone()\n    #print m2.effect\n    #print m2.select(\"select * from user;\").fetchall()\n    #print m2.effect\n    #m2.update(\"insert into user(username,password) values('haha', 'heihei');\")\n    #print m2.effect\n```\n\n使用方法\n```\n#!/usr/bin/env python\n# _*_ coding:utf-8 _*_\nfrom mysqlhelper import m, m2\nimport time\ndef test():\n    print \"\\nm info:\"\n    print m.select(\"select * from user;\").fetchone()\n    print m.effect\n    print m.select(\"select * from user;\").fetchall()\n    print m.effect\n    m.update(\"insert into user(username,password) values('haha', 'heihei');\")\n    print m.effect\n    #################################################\n    print \"\\nm2 info:\"\n    print m2.select(\"select * from user;\").fetchone()\n    print m2.effect\n    print m2.select(\"select * from user;\").fetchall()\n    print m2.effect\n    m2.update(\"insert into user(username,password) values('haha', 'heihei');\")\n    print m2.effect\nif __name__ == '__main__':\n    test()\n```",
+        "summary": "Python 连接 MySQL的三种方式",
+        "tags": [
+            "mysql",
+            "python"
+        ],
+        "title": "Python 连接 MySQL",
+        "viewTimes": 0
+    },
+    "err": "SUCCESS",
+    "msg": ""
+}
+```
+### archiving
+Endpoint:
+```
+GET:/api/v1/articles/archiving/<string:nickname>
+```
+Example Response:
+```
+{
+    "data": {
+        "archivingList": [
+            [
+                {
+                    "_id": 33,
+                    "createTime": "2019-05-06T12:25:49",
+                    "title": "Linux 提供简单 http server"
+                },
+                {
+                    "_id": 28,
+                    "createTime": "2019-05-03T16:28:22",
+                    "title": "MySQL连接查询原理"
+                },
+                {
+                    "_id": 29,
+                    "createTime": "2019-05-03T16:28:22",
+                    "title": "Redis安装及常用配置"
+                },
+                {
+                    "_id": 30,
+                    "createTime": "2019-05-03T16:28:22",
+                    "title": "Ubuntu 时间设置"
+                }
+            ],
+            [
+                {
+                    "_id": 31,
+                    "createTime": "2019-04-03T16:28:22",
+                    "title": "Python 连接 MySQL"
+                }
+            ]
+        ]
+    },
+    "err": "SUCCESS",
+    "msg": ""
+}
 ```
 
-```
-### 归档
-```
-```
+more details please read the Makefile.
 
 
