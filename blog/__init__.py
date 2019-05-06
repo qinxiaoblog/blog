@@ -19,8 +19,9 @@ app.config.from_pyfile(
 app.config.from_pyfile(os.path.join(root_dir, '.settings.py'), silent=True)
 silent = True if app.config['DEBUG'] else False
 app.config.from_envvar('BLOG_SETTINGS', silent=silent)
-
-
+# app.config['JSON_AS_ASCII'] = False
+# app.config.update(RESTFUL_JSON=dict(ensure_ascii=False))
+app.route
 logger = init_logger('/tmp/blog.log', loglevel=app.config['LOG_LEVEL'].upper())
 
 
