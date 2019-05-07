@@ -1,5 +1,7 @@
+[TOC]
+
 # Introduction
-Just a API of Blog-Admin-Web and Blog-Web
+Blog-Admin and Blog
 
 Blog-Admin-Web Address: [https://github.com/qinxiaoblog/blog-admin-web](https://github.com/qinxiaoblog/blog-admin-web)
 
@@ -47,7 +49,7 @@ and you can overwrite default settings.
 
 
 
-# Blog-Admin-Web
+# Blog-Admin
 ## register
 Endpoint:
 ```
@@ -298,7 +300,7 @@ Example Request Body:
 ```
 
 
-# Blog-Web
+# Blog
 ## Get Articles List
 Endpoint:
 ```
