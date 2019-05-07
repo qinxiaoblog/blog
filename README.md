@@ -7,7 +7,7 @@ take a look at the manager.py file, Makefile, Procfile you will know it.
 you can use your own way to run it, such as supervisro, uwsgi, gunicorn.
 ```
 mkvirtualenv blog-venv
-git clone https://github.com/yuchaoshui/blog
+git clone https://github.com/qinxiaoblog/blog
 cd blog
 make install-deps
 make dist
