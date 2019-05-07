@@ -1,6 +1,9 @@
 # Introduction
-Just a API of Blog-Admin and Blog-Web
+Just a API of Blog-Admin-Web and Blog-Web
 
+Blog-Admin-Web Address: [https://github.com/qinxiaoblog/blog-admin-web](https://github.com/qinxiaoblog/blog-admin-web)
+
+TODO：Blog-Web
 
 # Installation
 take a look at the manager.py file, Makefile, Procfile you will know it.
@@ -44,7 +47,7 @@ and you can overwrite default settings.
 
 
 
-# Blog-Admin
+# Blog-Admin-Web
 ## register
 Endpoint:
 ```
@@ -95,7 +98,7 @@ Example Response:
 }
 ```
 note:
-- You need provide User-Token in headers,if you use Blog-Admin.
+- You need provide User-Token in headers,if you use Blog-Admin-Web.
 ## Article of Blog
 ### Get Articles List
 Endpoint:
