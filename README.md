@@ -94,6 +94,8 @@ Example Response:
     "msg": ""
 }
 ```
+note:
+- You need provide User-Token in headers,if you use Blog-admin.
 ## Article of Blog
 ### Get Articles List
 Endpoint:
