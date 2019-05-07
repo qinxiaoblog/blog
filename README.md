@@ -44,6 +44,7 @@ and you can overwrite default settings.
 `make dist` to make a package,
 `honcho start` to start server locally.
 `make compile-deps` to generate requirements.txt use requirements.in
+ more details please read the Makefile.
 
 
 
@@ -614,6 +615,6 @@ Example Response:
 }
 ```
 
-more details please read the Makefile.
+
 
 
