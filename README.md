@@ -44,7 +44,7 @@ and you can overwrite default settings.
 
 
 
-# Blog Admin
+# Blog-Admin
 ## register
 Endpoint:
 ```
@@ -95,7 +95,7 @@ Example Response:
 }
 ```
 note:
-- You need provide User-Token in headers,if you use Blog-admin.
+- You need provide User-Token in headers,if you use Blog-Admin.
 ## Article of Blog
 ### Get Articles List
 Endpoint:
@@ -295,7 +295,7 @@ Example Request Body:
 ```
 
 
-# Blog Web
+# Blog-Web
 ## Get Articles List
 Endpoint:
 ```
